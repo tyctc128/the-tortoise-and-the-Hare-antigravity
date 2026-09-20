@@ -1,0 +1,761 @@
+/* ==========================================================================
+   《龜兔賽跑 SEL 改編版》真正繪本風格樣式表
+   核心特色：大器滿版插畫 (16:9無裁切)、溫潤優雅的故事紙頁、自然正常字距
+   ========================================================================== */
+
+:root {
+  --primary-forest: #2D6A4F;
+  --primary-leaf: #52B788;
+  --accent-coral: #E76F51;
+  --accent-sun: #F4A261;
+  --accent-gold: #E9C46A;
+  --paper-cream: #FFFDF9;
+  --text-charcoal: #264653;
+  --text-muted: #5C677D;
+  --ruby-color: #92400E;
+  --radius-book: 20px;
+  --font-story: 'PingFang TC', 'Microsoft JhengHei', 'Noto Sans TC', system-ui, -apple-system, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  font-family: var(--font-story);
+  background: radial-gradient(circle at 50% 18%, #FFFDF8 0%, #F5EDE4 50%, #E3D6C6 100%);
+  color: var(--text-charcoal);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-x: hidden;
+  user-select: none;
+}
+
+/* ==========================================================================
+   頂部極簡工具列 Minimalist Navbar
+   ========================================================================== */
+.story-navbar {
+  width: 94%;
+  max-width: 1200px;
+  margin: 12px auto 8px;
+  padding: 8px 22px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 40px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  z-index: 100;
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.book-icon {
+  font-size: 1.5rem;
+}
+
+.nav-book-name {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--primary-forest);
+}
+
+.nav-book-name small {
+  font-size: 0.75rem;
+  color: var(--accent-coral);
+  font-weight: 700;
+}
+
+.nav-center .cur-page-indicator {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav-pill-btn {
+  background: #FFF;
+  color: var(--text-charcoal);
+  border: 1.5px solid #EADBCC;
+  border-radius: 30px;
+  padding: 6px 14px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  font-family: inherit;
+}
+
+.nav-pill-btn:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent-sun);
+  background: #FFFDF9;
+  box-shadow: 0 4px 12px rgba(244, 162, 97, 0.25);
+}
+
+.nav-pill-btn.active {
+  background: var(--primary-forest);
+  color: #FFF;
+  border-color: var(--primary-forest);
+}
+
+.nav-pill-btn.speaking {
+  background: var(--accent-coral);
+  color: #FFF;
+  border-color: var(--accent-coral);
+  animation: pulse-read 1.4s infinite;
+}
+
+@keyframes pulse-read {
+  0%, 100% { box-shadow: 0 0 6px rgba(231, 111, 81, 0.4); }
+  50% { box-shadow: 0 0 18px rgba(231, 111, 81, 0.8); }
+}
+
+/* ==========================================================================
+   主繪本舞台 & 翻頁控制
+   ========================================================================== */
+.book-stage {
+  flex: 1;
+  width: 100%;
+  max-width: 1220px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 6px 20px 20px;
+  position: relative;
+}
+
+.paddle-arrow {
+  position: absolute;
+  top: 48%;
+  transform: translateY(-50%);
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #FFF;
+  border: 2px solid #EADBCC;
+  color: var(--primary-forest);
+  font-size: 1.5rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  z-index: 50;
+  transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.paddle-arrow:hover {
+  transform: translateY(-50%) scale(1.15);
+  background: var(--primary-forest);
+  color: #FFF;
+  border-color: var(--primary-forest);
+  box-shadow: 0 12px 30px rgba(45, 106, 79, 0.35);
+}
+
+.paddle-left { left: -8px; }
+.paddle-right { right: -8px; }
+
+/* 經典精裝對開繪本本體 */
+.picture-book {
+  width: 100%;
+  height: 74vh;
+  min-height: 530px;
+  max-height: 720px;
+  background: var(--paper-cream);
+  border-radius: var(--radius-book);
+  box-shadow: 
+    0 25px 60px -15px rgba(50, 35, 20, 0.2),
+    0 0 0 1px rgba(0, 0, 0, 0.05),
+    inset 0 0 60px rgba(225, 215, 195, 0.25);
+  border: 4px solid #EFE4D2;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+}
+
+/* 書脊中線陰影 */
+.book-gutter {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 36px;
+  transform: translateX(-50%);
+  background: linear-gradient(to right, 
+    rgba(0,0,0,0) 0%, 
+    rgba(0,0,0,0.04) 45%, 
+    rgba(0,0,0,0.12) 50%, 
+    rgba(0,0,0,0.04) 55%, 
+    rgba(0,0,0,0) 100%);
+  pointer-events: none;
+  z-index: 20;
+}
+
+/* 跨頁項目 */
+.book-spread {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.book-spread.active {
+  display: flex;
+  opacity: 1;
+  animation: pageTurnEffect 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes pageTurnEffect {
+  from {
+    opacity: 0;
+    transform: perspective(1000px) rotateY(-4deg) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: perspective(1000px) rotateY(0deg) scale(1);
+  }
+}
+
+/* ==========================================================================
+   封面頁 Cover Page Layout
+   ========================================================================== */
+.cover-spread-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  background: linear-gradient(135deg, #FDF9F0 0%, #F5EEE4 100%);
+  padding: 28px 36px;
+  gap: 36px;
+  align-items: center;
+}
+
+.cover-art-pane {
+  flex: 1.1;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cover-art-img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  max-height: 100%;
+  object-fit: cover;
+  border-radius: 16px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+  border: 4px solid #FFF;
+}
+
+.cover-text-pane {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-right: 15px;
+}
+
+.cover-badge-ribbon {
+  display: inline-block;
+  background: #E8F5E9;
+  color: var(--primary-forest);
+  font-weight: 800;
+  font-size: 0.85rem;
+  padding: 5px 14px;
+  border-radius: 20px;
+  margin-bottom: 12px;
+  width: fit-content;
+}
+
+.book-big-title {
+  font-size: 3.4rem;
+  font-weight: 900;
+  color: var(--primary-forest);
+  line-height: 1.15;
+  letter-spacing: 2px;
+}
+
+.book-subtitle-tag {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--accent-sun);
+  margin: 4px 0 14px;
+}
+
+.book-prologue {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: var(--text-muted);
+  margin-bottom: 18px;
+}
+
+.character-badges {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 22px;
+}
+
+.c-badge {
+  background: #FFF;
+  border: 1px solid #EADBCC;
+  border-radius: 10px;
+  padding: 8px 14px;
+  font-size: 0.9rem;
+  color: var(--text-charcoal);
+}
+
+.btn-start-reading {
+  background: linear-gradient(135deg, var(--accent-sun), var(--accent-coral));
+  color: #FFF;
+  border: none;
+  border-radius: 50px;
+  padding: 13px 36px;
+  font-size: 1.25rem;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(231, 111, 81, 0.4);
+  transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+  width: fit-content;
+  font-family: inherit;
+}
+
+.btn-start-reading:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 30px rgba(231, 111, 81, 0.6);
+}
+
+/* ==========================================================================
+   故事對開頁面 Story Spread Layout (左頁大插畫，右頁大字故事紙頁)
+   ========================================================================== */
+.story-spread-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+/* 左頁：全幅大插畫 (16:9 比例，完全無裁切！) */
+.spread-left-art {
+  flex: 1.15;
+  height: 100%;
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.full-bleed-art {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  max-height: 100%;
+  object-fit: cover;
+  border-radius: 16px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+  border: 4px solid #FFF;
+  display: block;
+}
+
+/* 右頁：大字內文紙頁 */
+.spread-right-story {
+  flex: 1;
+  height: 100%;
+  padding: 36px 42px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-left: 1px solid rgba(0,0,0,0.06);
+}
+
+.story-chapter-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 2px solid #EFE4D2;
+  padding-bottom: 10px;
+  margin-bottom: 14px;
+}
+
+.chapter-number {
+  background: var(--primary-forest);
+  color: #FFF;
+  font-weight: 800;
+  font-size: 0.85rem;
+  padding: 4px 12px;
+  border-radius: 14px;
+}
+
+.chapter-name {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--primary-forest);
+}
+
+/* 故事大字段落 */
+.story-text-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 8px 0;
+  border-radius: 12px;
+  transition: background 0.3s;
+}
+
+.story-text-body.reading-highlight {
+  background: #FFF9E6;
+  box-shadow: 0 0 20px rgba(244, 162, 97, 0.25);
+  border-radius: 12px;
+  padding: 8px 12px;
+}
+
+.story-text-body p {
+  font-size: 1.45rem;
+  line-height: 2.2;
+  letter-spacing: 0.5px;
+  text-align: justify;
+  margin-bottom: 14px;
+  color: var(--text-charcoal);
+}
+
+.story-text-body p:last-child {
+  margin-bottom: 0;
+}
+
+/* 注音排版：嚴格修復字距撕裂！ */
+body.ruby-off rt {
+  display: none !important;
+}
+
+body.ruby-on ruby {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  vertical-align: bottom;
+  margin: 0 1px;
+}
+
+body.ruby-on rt {
+  font-size: 0.46em;
+  line-height: 1;
+  height: 1.1em;
+  color: var(--ruby-color);
+  font-weight: 700;
+}
+
+/* 溫暖金句卡 (取代冷冰冰的網頁表單) */
+.story-quote-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #FFF8EB;
+  border: 1.5px solid #FDE68A;
+  border-radius: 14px;
+  padding: 12px 16px;
+  margin-top: 10px;
+}
+
+.quote-avatar {
+  font-size: 1.8rem;
+}
+
+.quote-content strong {
+  display: block;
+  font-size: 0.92rem;
+  color: var(--primary-forest);
+  margin-bottom: 2px;
+}
+
+.quote-content span {
+  font-size: 0.88rem;
+  color: #78350F;
+  line-height: 1.4;
+}
+
+/* ==========================================================================
+   第五頁：微影院與結業式 Finale
+   ========================================================================== */
+.cinema-bg {
+  background: #1A1815;
+  border-radius: 16px 0 0 16px;
+  padding: 24px;
+}
+
+.cinema-player-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cinema-video {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 14px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+  border: 3px solid #FFE6A7;
+  display: block;
+}
+
+.cinema-title {
+  color: #FFE6A7;
+  font-size: 0.95rem;
+  font-weight: 800;
+  margin-top: 12px;
+}
+
+.sel-trio-box {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 10px 0;
+}
+
+.trio-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #FFF;
+  border: 1px solid #EADBCC;
+  border-radius: 10px;
+  padding: 8px 14px;
+}
+
+.trio-icon {
+  font-size: 1.5rem;
+}
+
+.trio-row strong {
+  font-size: 0.92rem;
+  color: var(--primary-forest);
+  display: block;
+}
+
+.trio-row p {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.cert-card-box {
+  background: #FEF9C3;
+  border: 2px dashed #EAB308;
+  border-radius: 12px;
+  padding: 12px 16px;
+  margin-top: 6px;
+}
+
+.cert-heading {
+  font-size: 0.92rem;
+  font-weight: 800;
+  color: #854D0E;
+  margin-bottom: 6px;
+}
+
+.cert-input-row {
+  display: flex;
+  gap: 8px;
+}
+
+.cert-input-row input {
+  flex: 1;
+  padding: 7px 14px;
+  border: 1.5px solid #D4B106;
+  border-radius: 20px;
+  font-size: 0.88rem;
+  font-family: inherit;
+  outline: none;
+}
+
+.cert-input-row button {
+  background: #EAB308;
+  color: #FFF;
+  font-weight: 800;
+  border: none;
+  padding: 7px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.cert-output {
+  display: none;
+  margin-top: 8px;
+  background: #FFF;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: #854D0E;
+  text-align: center;
+}
+
+/* ==========================================================================
+   底部導覽條
+   ========================================================================== */
+.book-footer-dots {
+  margin-top: 14px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.footer-page-title {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--primary-forest);
+}
+
+.footer-dots-container {
+  display: flex;
+  gap: 8px;
+}
+
+.book-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #D1D5DB;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.book-dot.active {
+  background: var(--accent-coral);
+  transform: scale(1.35);
+  box-shadow: 0 0 10px rgba(231, 111, 81, 0.6);
+}
+
+/* 特效小彩星 */
+.sparkle-node {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  animation: floatSparkle 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes floatSparkle {
+  0% { transform: translate(0, 0) scale(0.5); opacity: 1; }
+  100% { transform: translate(var(--dx), var(--dy)) scale(1.4); opacity: 0; }
+}
+
+/* ==========================================================================
+   響應式設計 (手機直式與窄螢幕)
+   ========================================================================== */
+@media (max-width: 900px) {
+  .picture-book {
+    height: auto;
+    min-height: auto;
+    max-height: none;
+    overflow-y: visible;
+  }
+
+  .book-gutter {
+    display: none;
+  }
+
+  .cover-spread-container,
+  .story-spread-container {
+    flex-direction: column;
+    padding: 16px;
+    gap: 16px;
+  }
+
+  .spread-left-art {
+    padding: 0;
+  }
+
+  .spread-right-story {
+    border-left: none;
+    padding: 16px 10px;
+  }
+
+  .paddle-arrow {
+    display: none;
+  }
+
+  .story-navbar {
+    padding: 6px 14px;
+  }
+
+  .nav-pill-btn .txt {
+    display: none;
+  }
+
+  .story-text-body p {
+    font-size: 1.25rem;
+    line-height: 2.1;
+  }
+}
+
+/* CSS Grid 對開佈局：左頁 50%，右頁 50%，永遠不被擠壓！ */
+.story-spread-container,
+.cover-spread-container {
+  width: 100%;
+  height: 100%;
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  box-sizing: border-box;
+}
+
+.spread-left-art,
+.cover-art-pane {
+  width: 100% !important;
+  height: 100% !important;
+  padding: 24px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  overflow: hidden !important;
+  box-sizing: border-box !important;
+}
+
+.full-bleed-art,
+.cover-art-img {
+  width: 100% !important;
+  max-width: 100% !important;
+  aspect-ratio: 16 / 9 !important;
+  max-height: 100% !important;
+  object-fit: cover !important;
+  border-radius: 16px !important;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15) !important;
+  border: 4px solid #FFF !important;
+  display: block !important;
+}
+
+.spread-right-story,
+.cover-text-pane {
+  width: 100% !important;
+  height: 100% !important;
+  padding: 32px 38px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  overflow-y: auto !important;
+  box-sizing: border-box !important;
+  border-left: 1px solid rgba(0,0,0,0.06);
+}

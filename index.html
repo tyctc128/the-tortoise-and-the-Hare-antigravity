@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>龜兔賽跑 (SEL改編版) — 兒童繪本</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="ruby-off">
+
+  <!-- 頂部極簡繪本工具列 -->
+  <header class="story-navbar">
+    <div class="nav-left">
+      <span class="book-icon">📖</span>
+      <span class="nav-book-name">龜兔賽跑 <small>(SEL繪本)</small></span>
+    </div>
+
+    <div class="nav-center">
+      <span class="cur-page-indicator" id="curPageIndicator">第 1 頁 / 共 6 頁</span>
+    </div>
+
+    <div class="nav-right">
+      <button class="nav-pill-btn" id="btnTts" title="朗讀這頁的故事">
+        <span class="icon">🔊</span><span class="txt">朗讀故事</span>
+      </button>
+      <button class="nav-pill-btn" id="btnRuby" title="切換注音模式">
+        <span class="icon">🔤</span><span class="txt">注音模式</span>
+      </button>
+      <button class="nav-pill-btn" id="btnSound" title="開關翻頁音效">
+        <span class="icon">🎵</span><span class="txt">音效: 開</span>
+      </button>
+      <button class="nav-pill-btn" id="btnFullscreen" title="全螢幕">
+        <span class="icon">⛶</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- 繪本實體舞台 -->
+  <main class="book-stage">
+    <!-- 兩側實體翻頁大耳朵 -->
+    <button class="paddle-arrow paddle-left" id="paddleLeft" title="上一頁">❮</button>
+    <button class="paddle-arrow paddle-right" id="paddleRight" title="下一頁">❯</button>
+
+    <!-- 經典精裝對開繪本本體 -->
+    <div class="picture-book">
+      <div class="book-gutter"></div>
+
+      <!-- PAGE 0: 繪本封面 -->
+      <section class="book-spread active" data-page="0" data-title="封面">
+        <div class="cover-spread-container">
+          <div class="cover-art-pane">
+            <img src="assets/poster.jpg" alt="封面圖" class="cover-art-img" onerror="this.src='assets/scene0.jpg'">
+          </div>
+          <div class="cover-text-pane">
+            <div class="cover-badge-ribbon">🌱 社會情緒學習 (SEL) 經典改編繪本</div>
+            <h1 class="book-big-title">龜兔賽跑</h1>
+            <div class="book-subtitle-tag">SEL 改編版</div>
+            <p class="book-prologue">
+              在森林這場精彩的賽跑裡，兔子學會了認錯與感恩，烏龜展現了冷靜與同理心。<br><br>
+              <strong>「比獨自贏得第一名更耀眼的，是懂得在夥伴跌倒時，伸出溫暖的手！」</strong>
+            </p>
+            <div class="character-badges">
+              <div class="c-badge">🐢 <strong>小烏龜</strong>：沉著冷靜・一步一步來</div>
+              <div class="c-badge">🐰 <strong>小兔子</strong>：活潑自信・勇於說對不起</div>
+            </div>
+            <button class="btn-start-reading" id="btnStartReading">
+              <span>👉 翻開繪本 開始閱讀</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- PAGE 1: 第一幕 -->
+      <section class="book-spread" data-page="1" data-title="第一幕：冷靜的深呼吸">
+        <div class="story-spread-container">
+          <!-- 左頁：全幅大插畫 -->
+          <div class="spread-left-art">
+            <img src="assets/scene0.jpg" alt="兔子嘲笑烏龜，烏龜冷靜下來" class="full-bleed-art">
+          </div>
+          <!-- 右頁：純淨大字故事紙頁 -->
+          <div class="spread-right-story">
+            <div class="story-chapter-header">
+              <span class="chapter-number">第一幕</span>
+              <span class="chapter-name">冷靜的深呼吸</span>
+            </div>
+
+            <div class="story-text-body" data-speech="陽光明媚的早晨，森林賽跑大會開始了。起跑線前，兔子得意地嘲笑烏龜：「你走得那麼慢，怎麼可能贏得了我？我看你還是趁早放棄吧！」 烏龜聽了很生氣，但牠沒有大吼發脾氣。烏龜閉上雙眼，深深吸了一口氣，再慢慢吐出所有的氣。讓自己平靜下來後，烏龜微笑著平靜接受了挑戰。">
+              <p><ruby>陽<rt>ㄧㄤˊ</rt></ruby><ruby>光<rt>ㄍㄨㄤ</rt></ruby><ruby>明<rt>ㄇㄧㄥˊ</rt></ruby><ruby>媚<rt>ㄇㄟˋ</rt></ruby><ruby>的<rt>˙ㄉㄜ</rt></ruby><ruby>早<rt>ㄗㄠˇ</rt></ruby><ruby>晨<rt>ㄔㄣˊ</rt></ruby>，<ruby>森<rt>ㄙㄣ</rt></ruby><ruby>林<rt>ㄌㄧㄣˊ</rt></ruby><ruby>賽<rt>ㄙㄞˋ</rt></ruby><ruby>跑<rt>ㄆㄠˇ</rt></ruby><ruby>大<rt>ㄉㄚˋ</rt></ruby><ruby>會<rt>ㄏㄨㄟˋ</rt></ruby><ruby>開<rt>ㄎㄞ</rt></ruby><ruby>始<rt>ㄕˇ</rt></ruby><ruby>了<rt>˙ㄌㄜ</rt></ruby>。<ruby>起<rt>ㄑㄧˇ</rt></ruby><ruby>跑<rt>ㄆㄠˇ</rt></ruby><ruby>線<rt>ㄒㄧㄢˋ</rt></ruby><ruby>前<rt>ㄑㄧㄢˊ</rt></ruby>，<ruby>兔<rt>ㄊㄨˋ</rt></ruby><ruby>子<rt>˙ㄗ</rt></ruby><ruby>得<rt>ㄉㄜˊ</rt></ruby><ruby>意<rt>ㄧˋ</rt></ruby><ruby>地<rt>˙ㄉㄜ</rt></ruby><ruby>嘲<rt>ㄔㄠˊ</rt></ruby><ruby>笑<rt>ㄒㄧㄠˋ</rt></ruby><ruby>烏<rt>ㄨ</rt></ruby><ruby>龜<rt>ㄍㄨㄟ</rt></ruby>：「<ruby>你<rt>ㄋㄧˇ</rt></ruby><ruby>走<rt>ㄗㄡˇ</rt></ruby><ruby>得<rt>ㄉㄜˊ</rt></ruby><ruby>那<rt>ㄋㄚˋ</rt></ruby><ruby>麼<rt>˙ㄇㄜ</rt></ruby><ruby>慢<rt>ㄇㄢˋ</rt></ruby>，<ruby>怎<rt>ㄗㄣˇ</rt></ruby><ruby>麼<rt>˙ㄇㄜ</rt></ruby><ruby>可<rt>ㄎㄜˇ</rt></ruby><ruby>能<rt>ㄋㄥˊ</rt></ruby><ruby>贏<rt>ㄧㄥˊ</rt></ruby><ruby>得<rt>ㄉㄜˊ</rt></ruby><ruby>了<rt>˙ㄌㄜ</rt></ruby><ruby>我<rt>ㄨㄛˇ</rt></ruby>？<ruby>我<rt>ㄨㄛˇ</rt></ruby><ruby>看<rt>ㄎㄢˋ</rt></ruby><ruby>你<rt>ㄋㄧˇ</rt></ruby><ruby>還<rt>ㄏㄞˊ</rt></ruby><ruby>是<rt>ㄕˋ</rt></ruby><ruby>趁<rt>ㄔㄣˋ</rt></ruby><ruby>早<rt>ㄗㄠˇ</rt></ruby><ruby>放<rt>ㄈㄤˋ</rt></ruby><ruby>棄<rt>ㄑㄧˋ</rt></ruby><ruby>吧<rt>˙ㄅㄚ</rt></ruby>！」</p>
+              <p><ruby>烏<rt>ㄨ</rt></ruby><ruby>龜<rt>ㄍㄨㄟ</rt></ruby><ruby>聽<rt>ㄊㄧㄥ</rt></ruby><ruby>了<rt>˙ㄌㄜ</rt></ruby><ruby>很<rt>ㄏㄣˇ</rt></ruby><ruby>生<rt>ㄕㄥ</rt></ruby><ruby>氣<rt>ㄑㄧˋ</rt></ruby>，<ruby>但<rt>ㄉㄢˋ</rt></ruby><ruby>牠<rt>ㄊㄚ</rt></ruby><ruby>沒<rt>ㄇㄟˊ</rt></ruby><ruby>有<rt>ㄧㄡˇ</rt></ruby><ruby>大<rt>ㄉㄚˋ</rt></ruby><ruby>吼<rt>ㄏㄡˇ</rt></ruby><ruby>發<rt>ㄈㄚ</rt></ruby><ruby>脾<rt>ㄆㄧˊ</rt></ruby><ruby>氣<rt>ㄑㄧˋ</rt></ruby>。<ruby>烏<rt>ㄨ</rt></ruby><ruby>龜<rt>ㄍㄨㄟ</rt></ruby><ruby>閉<rt>ㄅㄧˋ</rt></ruby><ruby>上<rt>˙ㄕㄤ</rt></ruby><ruby>雙<rt>ㄕㄨㄤ</rt></ruby><ruby>眼<rt>ㄧㄢˇ</rt></ruby>，<ruby>深<rt>ㄕㄣ</rt></ruby><ruby>深<rt>ㄕㄣ</rt></ruby><ruby>吸<rt>ㄒㄧ</rt></ruby><ruby>了<rt>˙ㄌㄜ</rt></ruby><ruby>一<rt>ㄧˋ</rt></ruby><ruby>口<rt>ㄎㄡˇ</rt></ruby><ruby>氣<rt>ㄑㄧˋ</rt></ruby>，<ruby>再<rt>ㄗㄞˋ</rt></ruby><ruby>慢<rt>ㄇㄢˋ</rt></ruby><ruby>慢<rt>ㄇㄢˋ</rt></ruby><ruby>吐<rt>ㄊㄨˇ</rt></ruby><ruby>出<rt>ㄔㄨ</rt></ruby>所<ruby>有<rt>ㄧㄡˇ</rt></ruby><ruby>的<rt>˙ㄉㄜ</rt></ruby><ruby>氣<rt>ㄑㄧˋ</rt></ruby>。<ruby>讓<rt>ㄖㄤˋ</rt></ruby><ruby>自<rt>ㄗˋ</rt></ruby><ruby>己<rt>ㄐㄧˇ</rt></ruby><ruby>平<rt>ㄆㄧㄥˊ</rt></ruby><ruby>靜<rt>ㄐㄧㄥˋ</rt></ruby><ruby>下<rt>ㄒㄧㄚˋ</rt></ruby><ruby>來<rt>ㄌㄞˊ</rt></ruby><ruby>後<rt>ㄏㄡˋ</rt></ruby>，<ruby>烏<rt>ㄨ</rt></ruby><ruby>龜<rt>ㄍㄨㄟ</rt></ruby><ruby>微<rt>ㄨㄟˊ</rt></ruby><ruby>笑<rt>ㄒㄧㄠˋ</rt></ruby><ruby>著<rt>ㄓㄠˊ</rt></ruby><ruby>平<rt>ㄆㄧㄥˊ</rt></ruby><ruby>靜<rt>ㄐㄧㄥˋ</rt></ruby><ruby>接<rt>ㄐㄧㄝ</rt></ruby><ruby>受<rt>ㄕㄡˋ</rt></ruby><ruby>了<rt>˙ㄌㄜ</rt></ruby><ruby>挑<rt>ㄊㄧㄠˇ</rt></ruby><ruby>戰<rt>ㄓㄢˋ</rt></ruby>。</p>
+            </div>
+
+            <div class="story-quote-card">
+              <span class="quote-avatar">🐢</span>
+              <div class="quote-content">
+                <strong>小烏龜的冷靜魔法：</strong>
+                <span>「吸氣……吐氣……生氣的時候停一停，我的心情就能平靜下來。」</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PAGE 2: 第二幕 -->
+      <section class="book-spread" data-page="2" data-title="第二幕：一步一步來">
+        <div class="story-spread-container">
+          <div class="spread-left-art">
+            <img src="assets/scene1.jpg" alt="兔子樹下大睡，烏龜努力爬坡" class="full-bleed-art">
+          </div>
+          <div class="spread-right-story">
+            <div class="story-chapter-header">
+              <span class="chapter-number">第二幕</span>
+              <span class="chapter-name">一步一步來，我做得到！</span>
+            </div>
+
+            <div class="story-text-body" data-speech="比賽開始，兔子像旋風般狂奔，遠遠領先後便在大樹下呼呼大睡：「烏龜大概天黑都爬不到，我先睡個大覺！」 烏龜滿頭大汗地爬著陡峭斜坡，雖然累，但牠擦去汗水，不斷在心中對自己說：「一步一步來，我做得到。」牠踏著穩健的步伐，堅持向前。">
+              <p><ruby>比<rt>ㄅㄧˇ</rt></ruby><ruby>賽<rt>ㄙㄞˋ</rt></ruby><ruby>開<rt>ㄎㄞ</rt></ruby><ruby>始<rt>ㄕˇ</rt></ruby>，<ruby>兔<rt>ㄊㄨˋ</rt></ruby><ruby>子<rt>˙ㄗ</rt></ruby><ruby>像<rt>ㄒㄧㄤˋ</rt></ruby><ruby>旋<rt>ㄒㄩㄢˋ</rt></ruby><ruby>風<rt>ㄈㄥ</rt></ruby>般<ruby>狂<rt>ㄎㄨㄤˊ</rt></ruby><ruby>奔<rt>ㄅㄣ</rt></ruby>，<ruby>遠<rt>ㄩㄢˇ</rt></ruby><ruby>遠<rt>ㄩㄢˇ</rt></ruby><ruby>領<rt>ㄌㄧㄥˇ</rt></ruby><ruby>先<rt>ㄒㄧㄢ</rt></ruby><ruby>後<rt>ㄏㄡˋ</rt></ruby><ruby>便<rt>ㄅㄧㄢˋ</rt></ruby><ruby>在<rt>ㄗㄞˋ</rt></ruby><ruby>大<rt>ㄉㄚˋ</rt></ruby><ruby>樹<rt>ㄕㄨˋ</rt></ruby><ruby>下<rt>ㄒㄧㄚˋ</rt></ruby><ruby>呼<rt>ㄏㄨ</rt></ruby><ruby>呼<rt>ㄏㄨ</rt></ruby><ruby>大<rt>ㄉㄚˋ</rt></ruby><ruby>睡<rt>ㄕㄨㄟˋ</rt></ruby>：「<ruby>烏<rt>ㄨ</rt></ruby><ruby>龜<rt>ㄍㄨㄟ</rt></ruby><ruby>大<rt>ㄉㄚˋ</rt></ruby><ruby>概<rt>ㄍㄞˋ</rt></ruby><ruby>天<rt>ㄊㄧㄢ</rt></ruby><ruby>黑<rt>ㄏㄟ</rt></ruby><ruby>都<rt>ㄉㄡ</rt></ruby><ruby>爬<rt>ㄆㄚˊ</rt></ruby><ruby>不<rt>ㄅㄨˋ</rt></ruby><ruby>到<rt>ㄉㄠˋ</rt></ruby>，<ruby>我<rt>ㄨㄛˇ</rt></ruby><ruby>先<rt>ㄒㄧㄢ</rt></ruby><ruby>睡<rt>ㄕㄨㄟˋ</rt></ruby>個<ruby>大<rt>ㄉㄚˋ</rt></ruby><ruby>覺<rt>ㄐㄧㄠˋ</rt></ruby>！」</p>
+              <p><ruby>烏<rt>ㄨ</rt></ruby><ruby>龜<rt>ㄍㄨㄟ</rt></ruby><ruby>滿<rt>ㄇㄢˇ</rt></ruby><ruby>頭<rt>ㄊㄡˊ</rt></ruby><ruby>大<rt>ㄉㄚˋ</rt></ruby><ruby>汗<rt>ㄏㄢˋ</rt></ruby><ruby>地<rt>˙ㄉㄜ</rt></ruby><ruby>爬<rt>ㄆㄚˊ</rt></ruby><ruby>著<rt>ㄓㄠˊ</rt></ruby><ruby>陡<rt>ㄉㄡˇ</rt></ruby><ruby>峭<rt>ㄑㄧㄠˋ</rt></ruby><ruby>斜<rt>ㄒㄧㄝˊ</rt></ruby><ruby>坡<rt>ㄆㄛ</rt></ruby>，<ruby>雖<rt>ㄙㄨㄟ</rt></ruby><ruby>然<rt>ㄖㄢˊ</rt></ruby><ruby>累<rt>ㄌㄟˋ</rt></ruby>，<ruby>但<rt>ㄉㄢˋ</rt></ruby><ruby>牠<rt>ㄊㄚ</rt></ruby><ruby>擦<rt>ㄘㄚ</rt></ruby><ruby>去<rt>ㄑㄩˋ</rt></ruby><ruby>汗<rt>ㄏㄢˋ</rt></ruby><ruby>水<rt>ㄕㄨㄟˇ</rt></ruby>，<ruby>不<rt>ㄅㄨˋ</rt></ruby><ruby>斷<rt>ㄉㄨㄢˋ</rt></ruby><ruby>在<rt>ㄗㄞˋ</rt></ruby><ruby>心<rt>ㄒㄧㄣ</rt></ruby>中<ruby>對<rt>ㄉㄨㄟˋ</rt></ruby><ruby>自<rt>ㄗˋ</rt></ruby><ruby>己<rt>ㄐㄧˇ</rt></ruby><ruby>說<rt>ㄕㄨㄛ</rt></ruby>：「<ruby>一<rt>ㄧˋ</rt></ruby><ruby>步<rt>ㄅㄨˋ</rt></ruby><ruby>一<rt>ㄧˋ</rt></ruby><ruby>步<rt>ㄅㄨˋ</rt></ruby><ruby>來<rt>ㄌㄞˊ</rt></ruby>，<ruby>我<rt>ㄨㄛˇ</rt></ruby><ruby>做<rt>ㄗㄨㄛˋ</rt></ruby><ruby>得<rt>ㄉㄜˊ</rt></ruby><ruby>到<rt>ㄉㄠˋ</rt></ruby>。」<ruby>牠<rt>ㄊㄚ</rt></ruby><ruby>踏<rt>ㄊㄚˋ</rt></ruby><ruby>著<rt>ㄓㄠˊ</rt></ruby><ruby>穩<rt>ㄨㄣˇ</rt></ruby><ruby>健<rt>ㄐㄧㄢˋ</rt></ruby><ruby>的<rt>˙ㄉㄜ</rt></ruby><ruby>步<rt>ㄅㄨˋ</rt></ruby>伐，堅持<ruby>向<rt>ㄒㄧㄤˋ</rt></ruby><ruby>前<rt>ㄑㄧㄢˊ</rt></ruby>。</p>
+            </div>
+
+            <div class="story-quote-card">
+              <span class="quote-avatar">🐢</span>
+              <div class="quote-content">
+                <strong>烏龜的神奇加油咒語：</strong>
+                <span>「一步一步來，我做得到！爬坡雖然很累，但只要不放棄，我就能走到終點！」</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PAGE 3: 第三幕 -->
+      <section class="book-spread" data-page="3" data-title="第三幕：聽見哭聲的抉擇">
+        <div class="story-spread-container">
+          <div class="spread-left-art">
+            <img src="assets/scene2.jpg" alt="兔子摔傷哭泣，烏龜停下腳步" class="full-bleed-art">
+          </div>
+          <div class="spread-right-story">
+            <div class="story-chapter-header">
+              <span class="chapter-number">第三幕</span>
+              <span class="chapter-name">聽見哭聲的溫柔抉擇</span>
+            </div>
+
+            <div class="story-text-body" data-speech="突然，一陣傷心的哭聲傳來。原來兔子醒來狂奔時摔傷了腿，正痛苦地坐在地上站不起來。此時終點就在眼前幾步，只要走過去烏龜就能贏得第一名。 但是烏龜停下了腳步。牠感受到兔子的痛，在榮譽與關懷之間，烏龜毅然決定放棄領先，轉身大步走回去伸出援手。">
+              <p><ruby>突<rt>ㄊㄨˊ</rt></ruby><ruby>然<rt>ㄖㄢˊ</rt></ruby>，<ruby>一<rt>ㄧˋ</rt></ruby><ruby>陣<rt>ㄓㄣˋ</rt></ruby><ruby>傷<rt>ㄕㄤ</rt></ruby><ruby>心<rt>ㄒㄧㄣ</rt></ruby><ruby>的<rt>˙ㄉㄜ</rt></ruby><ruby>哭<rt>ㄎㄨ</rt></ruby><ruby>聲<rt>ㄕㄥ</rt></ruby><ruby>傳<rt>ㄔㄨㄢˊ</rt></ruby><ruby>來<rt>ㄌㄞˊ</rt></ruby>。原<ruby>來<rt>ㄌㄞˊ</rt></ruby><ruby>兔<rt>ㄊㄨˋ</rt></ruby><ruby>子<rt>˙ㄗ</rt></ruby><ruby>醒<rt>ㄒㄧㄥˇ</rt></ruby><ruby>來<rt>ㄌㄞˊ</rt></ruby><ruby>狂<rt>ㄎㄨㄤˊ</rt></ruby><ruby>奔<rt>ㄅㄣ</rt></ruby><ruby>時<rt>ㄕˊ</rt></ruby><ruby>摔<rt>ㄕㄨㄞ</rt></ruby><ruby>傷<rt>ㄕㄤ</rt></ruby><ruby>了<rt>˙ㄌㄜ</rt></ruby><ruby>腿<rt>ㄊㄨㄟˇ</rt></ruby>，<ruby>正<rt>ㄓㄥˋ</rt></ruby><ruby>痛<rt>ㄊㄨㄥˋ</rt></ruby><ruby>苦<rt>ㄎㄨˇ</rt></ruby><ruby>地<rt>˙ㄉㄜ</rt></ruby><ruby>坐<rt>ㄗㄨㄛˋ</rt></ruby><ruby>在<rt>ㄗㄞˋ</rt></ruby><ruby>地<rt>˙ㄉㄜ</rt></ruby><ruby>上<rt>˙ㄕㄤ</rt></ruby><ruby>站<rt>ㄓㄢˋ</rt></ruby><ruby>不<rt>ㄅㄨˋ</rt></ruby><ruby>起<rt>ㄑㄧˇ</rt></ruby><ruby>來<rt>ㄌㄞˊ</rt></ruby>。<ruby>此<rt>ㄘˇ</rt></ruby><ruby>時<rt>ㄕˊ</rt></ruby><ruby>終<rt>ㄓㄨㄥ</rt></ruby><ruby>點<rt>ㄉㄧㄢˇ</rt></ruby><ruby>就<rt>ㄐㄧㄡˋ</rt></ruby><ruby>在<rt>ㄗㄞˋ</rt></ruby><ruby>眼<rt>ㄧㄢˇ</rt></ruby><ruby>前<rt>ㄑㄧㄢˊ</rt></ruby>幾<ruby>步<rt>ㄅㄨˋ</rt></ruby>，<ruby>只<rt>ㄓˇ</rt></ruby><ruby>要<rt>ㄧㄠˋ</rt></ruby><ruby>走<rt>ㄗㄡˇ</rt></ruby><ruby>過<rt>ㄍㄨㄛˋ</rt></ruby><ruby>去<rt>ㄑㄩˋ</rt></ruby><ruby>烏<rt>ㄨ</rt></ruby><ruby>龜<rt>ㄍㄨㄟ</rt></ruby><ruby>就<rt>ㄐㄧㄡˋ</rt></ruby><ruby>能<rt>ㄋㄥˊ</rt></ruby><ruby>贏<rt>ㄧㄥˊ</rt></ruby><ruby>得<rt>ㄉㄜˊ</rt></ruby>第<ruby>一<rt>ㄧˋ</rt></ruby>名。</p>
+              <p><ruby>但<rt>ㄉㄢˋ</rt></ruby><ruby>是<rt>ㄕˋ</rt></ruby><ruby>烏<rt>ㄨ</rt></ruby><ruby>龜<rt>ㄍㄨㄟ</rt></ruby><ruby>停<rt>ㄊㄧㄥˊ</rt></ruby><ruby>下<rt>ㄒㄧㄚˋ</rt></ruby><ruby>了<rt>˙ㄌㄜ</rt></ruby><ruby>腳<rt>ㄐㄧㄠˇ</rt></ruby><ruby>步<rt>ㄅㄨˋ</rt></ruby>。<ruby>牠<rt>ㄊㄚ</rt></ruby><ruby>感<rt>ㄍㄢˇ</rt></ruby><ruby>受<rt>ㄕㄡˋ</rt></ruby><ruby>到<rt>ㄉㄠˋ</rt></ruby><ruby>兔<rt>ㄊㄨˋ</rt></ruby><ruby>子<rt>˙ㄗ</rt></ruby><ruby>的<rt>˙ㄉㄜ</rt></ruby><ruby>痛<rt>ㄊㄨㄥˋ</rt></ruby>，<ruby>在<rt>ㄗㄞˋ</rt></ruby>榮譽與關懷<ruby>之<rt>ㄓ</rt></ruby>間，<ruby>烏<rt>ㄨ</rt></ruby><ruby>龜<rt>ㄍㄨㄟ</rt></ruby><ruby>毅<rt>ㄧˋ</rt></ruby><ruby>然<rt>ㄖㄢˊ</rt></ruby><ruby>決<rt>ㄐㄩㄝˊ</rt></ruby><ruby>定<rt>ㄉㄧㄥˋ</rt></ruby><ruby>放<rt>ㄈㄤˋ</rt></ruby><ruby>棄<rt>ㄑㄧˋ</rt></ruby><ruby>領<rt>ㄌㄧㄥˇ</rt></ruby><ruby>先<rt>ㄒㄧㄢ</rt></ruby>，<ruby>轉<rt>ㄓㄨㄢˇ</rt></ruby><ruby>身<rt>ㄕㄣ</rt></ruby><ruby>大<rt>ㄉㄚˋ</rt></ruby><ruby>步<rt>ㄅㄨˋ</rt></ruby><ruby>走<rt>ㄗㄡˇ</rt></ruby><ruby>回<rt>ㄏㄨㄟˊ</rt></ruby><ruby>去<rt>ㄑㄩˋ</rt></ruby><ruby>伸<rt>ㄕㄣ</rt></ruby><ruby>出<rt>ㄔㄨ</rt></ruby><ruby>援<rt>ㄩㄢˊ</rt></ruby><ruby>手<rt>ㄕㄡˇ</rt></ruby>。</p>
+            </div>
+
+            <div class="story-quote-card">
+              <span class="quote-avatar">💖</span>
+              <div class="quote-content">
+                <strong>同理心的力量：</strong>
+                <span>烏龜看見兔子的痛。在第一名與受傷的夥伴之間，烏龜選擇了溫暖！</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PAGE 4: 第四幕 -->
+      <section class="book-spread" data-page="4" data-title="第四幕：微笑跨過終點">
+        <div class="story-spread-container">
+          <div class="spread-left-art">
+            <img src="assets/scene3.jpg" alt="烏龜扶起兔子並肩越過終點" class="full-bleed-art">
+          </div>
+          <div class="spread-right-story">
+            <div class="story-chapter-header">
+              <span class="chapter-number">第四幕</span>
+              <span class="chapter-name">微笑着一起跨過終點</span>
+            </div>
+
+            <div class="story-text-body" data-speech="烏龜走回去，用小小的肩膀溫柔扶起兔子。兩隻動物互相扶持，一起微笑着跨過了終點線。 兔子羞愧地向烏龜道歉：「對不起，我不該嘲笑你；謝謝你願意回頭幫我！」烏龜微笑握住兔子的手。牠們從競爭對手，變成了最要好的真心朋友。">
+              <p><ruby>烏<rt>ㄨ</rt></ruby><ruby>龜<rt>ㄍㄨㄟ</rt></ruby><ruby>走<rt>ㄗㄡˇ</rt></ruby><ruby>回<rt>ㄏㄨㄟˊ</rt></ruby><ruby>去<rt>ㄑㄩˋ</rt></ruby>，<ruby>用<rt>ㄩㄥˋ</rt></ruby><ruby>小<rt>ㄒㄧㄠˇ</rt></ruby><ruby>小<rt>ㄒㄧㄠˇ</rt></ruby><ruby>的<rt>˙ㄉㄜ</rt></ruby><ruby>肩<rt>ㄐㄧㄢ</rt></ruby><ruby>膀<rt>ㄅㄤˇ</rt></ruby><ruby>溫<rt>ㄨㄣ</rt></ruby>柔<ruby>扶<rt>ㄈㄨˊ</rt></ruby><ruby>起<rt>ㄑㄧˇ</rt></ruby><ruby>兔<rt>ㄊㄨˋ</rt></ruby><ruby>子<rt>˙ㄗ</rt></ruby>。<ruby>兩<rt>ㄌㄧㄤˇ</rt></ruby><ruby>隻<rt>ㄓ</rt></ruby><ruby>動<rt>ㄉㄨㄥˋ</rt></ruby><ruby>物<rt>ㄨˋ</rt></ruby>互<ruby>相<rt>ㄒㄧㄤ</rt></ruby><ruby>扶<rt>ㄈㄨˊ</rt></ruby>持，<ruby>一<rt>ㄧˋ</rt></ruby><ruby>起<rt>ㄑㄧˇ</rt></ruby><ruby>微<rt>ㄨㄟˊ</rt></ruby><ruby>笑<rt>ㄒㄧㄠˋ</rt></ruby>着<ruby>跨<rt>ㄎㄨㄚˋ</rt></ruby><ruby>過<rt>ㄍㄨㄛˋ</rt></ruby><ruby>了<rt>˙ㄌㄜ</rt></ruby><ruby>終<rt>ㄓㄨㄥ</rt></ruby><ruby>點<rt>ㄉㄧㄢˇ</rt></ruby><ruby>線<rt>ㄒㄧㄢˋ</rt></ruby>。</p>
+              <p><ruby>兔<rt>ㄊㄨˋ</rt></ruby><ruby>子<rt>˙ㄗ</rt></ruby><ruby>羞<rt>ㄒㄧㄡ</rt></ruby><ruby>愧<rt>ㄎㄨㄟˋ</rt></ruby><ruby>地<rt>˙ㄉㄜ</rt></ruby><ruby>向<rt>ㄒㄧㄤˋ</rt></ruby><ruby>烏<rt>ㄨ</rt></ruby><ruby>龜<rt>ㄍㄨㄟ</rt></ruby><ruby>道<rt>ㄉㄠˋ</rt></ruby><ruby>歉<rt>ㄑㄧㄢˋ</rt></ruby>：「<ruby>對<rt>ㄉㄨㄟˋ</rt></ruby><ruby>不<rt>ㄅㄨˋ</rt></ruby><ruby>起<rt>ㄑㄧˇ</rt></ruby>，<ruby>我<rt>ㄨㄛˇ</rt></ruby><ruby>不<rt>ㄅㄨˋ</rt></ruby>該<ruby>嘲<rt>ㄔㄠˊ</rt></ruby><ruby>笑<rt>ㄒㄧㄠˋ</rt></ruby><ruby>你<rt>ㄋㄧˇ</rt></ruby>；<ruby>謝<rt>ㄒㄧㄝˋ</rt></ruby><ruby>謝<rt>ㄒㄧㄝˋ</rt></ruby><ruby>你<rt>ㄋㄧˇ</rt></ruby>願<ruby>意<rt>ㄧˋ</rt></ruby><ruby>回<rt>ㄏㄨㄟˊ</rt></ruby><ruby>頭<rt>ㄊㄡˊ</rt></ruby><ruby>幫<rt>ㄅㄤ</rt></ruby><ruby>我<rt>ㄨㄛˇ</rt></ruby>！」<ruby>烏<rt>ㄨ</rt></ruby><ruby>龜<rt>ㄍㄨㄟ</rt></ruby><ruby>微<rt>ㄨㄟˊ</rt></ruby><ruby>笑<rt>ㄒㄧㄠˋ</rt></ruby><ruby>握<rt>ㄨㄛˋ</rt></ruby><ruby>住<rt>ㄓㄨˋ</rt></ruby><ruby>兔<rt>ㄊㄨˋ</rt></ruby><ruby>子<rt>˙ㄗ</rt></ruby><ruby>的<rt>˙ㄉㄜ</rt></ruby><ruby>手<rt>ㄕㄡˇ</rt></ruby>。<ruby>牠<rt>ㄊㄚ</rt></ruby><ruby>們<rt>˙ㄇㄣ</rt></ruby><ruby>從<rt>ㄘㄨㄥˊ</rt></ruby><ruby>競<rt>ㄐㄧㄥˋ</rt></ruby><ruby>爭<rt>ㄓㄥ</rt></ruby><ruby>對<rt>ㄉㄨㄟˋ</rt></ruby><ruby>手<rt>ㄕㄡˇ</rt></ruby>，<ruby>變<rt>ㄅㄧㄢˋ</rt></ruby><ruby>成<rt>ㄔㄥˊ</rt></ruby><ruby>了<rt>˙ㄌㄜ</rt></ruby><ruby>最<rt>ㄗㄨㄟˋ</rt></ruby><ruby>要<rt>ㄧㄠˋ</rt></ruby><ruby>好<rt>ㄏㄠˇ</rt></ruby><ruby>的<rt>˙ㄉㄜ</rt></ruby><ruby>真<rt>ㄓㄣ</rt></ruby><ruby>心<rt>ㄒㄧㄣ</rt></ruby><ruby>朋<rt>ㄆㄥˊ</rt></ruby><ruby>友<rt>ㄧㄡˇ</rt></ruby>。</p>
+            </div>
+
+            <div class="story-quote-card">
+              <span class="quote-avatar">🤝</span>
+              <div class="quote-content">
+                <strong>真誠的關係修復：</strong>
+                <span>兔子說：「對不起，我不該嘲笑你；謝謝你幫助我！」牠們成了最好的真心朋友。</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PAGE 5: 第五幕 森林微影院與 SEL 結業式 -->
+      <section class="book-spread" data-page="5" data-title="第五幕：動畫微影院與結業式">
+        <div class="story-spread-container">
+          <!-- 左頁：3D動畫微影院 -->
+          <div class="spread-left-art cinema-bg">
+            <div class="cinema-player-wrapper">
+              <video id="storyVideo" controls poster="assets/poster.jpg" preload="metadata" class="cinema-video">
+                <source src="assets/story.mp4" type="video/mp4">
+                您的瀏覽器不支援 HTML5 影片。
+              </video>
+              <div class="cinema-title">🎬 40秒 3D 動畫《龜兔賽跑》完整賞析</div>
+            </div>
+          </div>
+          <!-- 右頁：SEL 三大法寶總結與證書 -->
+          <div class="spread-right-story">
+            <div class="story-chapter-header">
+              <span class="chapter-number">森林結業式</span>
+              <span class="chapter-name">SEL 社會情緒學習三大法寶</span>
+            </div>
+
+            <div class="sel-trio-box">
+              <div class="trio-row">
+                <span class="trio-icon">🧘</span>
+                <div>
+                  <strong>1. 冷靜深呼吸</strong>
+                  <p>生氣或慌張時停一下，深呼吸三次讓心情變平穩。</p>
+                </div>
+              </div>
+              <div class="trio-row">
+                <span class="trio-icon">💬</span>
+                <div>
+                  <strong>2. 一步一步來</strong>
+                  <p>困難想放棄時，給自己一句神奇正向咒語！</p>
+                </div>
+              </div>
+              <div class="trio-row">
+                <span class="trio-icon">🤝</span>
+                <div>
+                  <strong>3. 同理與真誠道歉</strong>
+                  <p>看見朋友的痛，勇敢說對不起與感謝，修復真心友誼。</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- 專屬榮譽小獎狀 -->
+            <div class="cert-card-box">
+              <div class="cert-heading">🏅 領取「SEL 情緒小勇士」榮譽勳章</div>
+              <div class="cert-input-row">
+                <input type="text" id="certStudentName" placeholder="輸入小朋友姓名..." maxlength="10">
+                <button id="btnGetCert">頒發證書</button>
+              </div>
+              <div id="certOutputBox" class="cert-output"></div>
+            </div>
+
+            <div style="margin-top:14px; text-align:center;">
+              <button class="btn-start-reading" id="btnReplayBook" style="font-size:1.05rem; padding:10px 26px;">
+                🔄 重新翻開繪本
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- 底部圓點導航 -->
+    <footer class="book-footer-dots">
+      <span class="footer-page-title" id="footerPageTitle">封面</span>
+      <div class="footer-dots-container" id="footerDots"></div>
+    </footer>
+  </main>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
